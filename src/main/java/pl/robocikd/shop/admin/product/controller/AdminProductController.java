@@ -13,7 +13,7 @@ import pl.robocikd.shop.admin.product.controller.dto.AdminProductDto;
 import pl.robocikd.shop.admin.product.model.AdminProduct;
 import pl.robocikd.shop.admin.product.service.AdminProductService;
 
-import java.util.Locale;
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -32,12 +32,12 @@ public class AdminProductController {
     }
 
     @PostMapping("/admin/products")
-    public AdminProduct createProduct(@RequestBody AdminProductDto adminProductDto) {
+    public AdminProduct createProduct(@RequestBody @Valid AdminProductDto adminProductDto) {
         return adminProductService.createProduct(mapAdminProduct(adminProductDto, EMPTY_ID));
     }
 
     @PutMapping("/admin/product/{id}")
-    public AdminProduct updateProduct(@RequestBody AdminProductDto adminProductDto, @PathVariable Long id) {
+    public AdminProduct updateProduct(@RequestBody @Valid AdminProductDto adminProductDto, @PathVariable Long id) {
         return adminProductService.updateProduct(mapAdminProduct(adminProductDto, id)
         );
     }
@@ -49,7 +49,7 @@ public class AdminProductController {
                 .description(adminProductDto.getDescription())
                 .category(adminProductDto.getCategory())
                 .price(adminProductDto.getPrice())
-                .currency(adminProductDto.getCurrency().toUpperCase(Locale.ROOT))
+                .currency(adminProductDto.getCurrency())
                 .build();
     }
 }
