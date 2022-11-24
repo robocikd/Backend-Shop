@@ -1,5 +1,6 @@
 package pl.robocikd.shop.admin.product.controller;
 
+import com.github.slugify.Slugify;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -78,7 +79,7 @@ public class AdminProductController {
                 .body(file);
     }
 
-    private static AdminProduct mapAdminProduct(AdminProductDto adminProductDto, Long id) {
+    private AdminProduct mapAdminProduct(AdminProductDto adminProductDto, Long id) {
         return AdminProduct.builder()
                 .id(id)
                 .name(adminProductDto.getName())
@@ -87,6 +88,12 @@ public class AdminProductController {
                 .price(adminProductDto.getPrice())
                 .currency(adminProductDto.getCurrency())
                 .image(adminProductDto.getImage())
+                .slug(slugifySlug(adminProductDto.getSlug()))
                 .build();
+    }
+
+    private String slugifySlug(String slug) {
+        Slugify slugify = Slugify.builder().customReplacement("_", "-").build();
+        return slugify.slugify(slug);
     }
 }
