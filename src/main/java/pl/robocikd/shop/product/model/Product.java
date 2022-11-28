@@ -3,12 +3,17 @@ package pl.robocikd.shop.product.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.robocikd.shop.review.model.Review;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -27,5 +32,8 @@ public class Product {
     private String currency;
     private String image;
     private String slug;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "productId")
+    private List<Review> reviews;
 
 }
