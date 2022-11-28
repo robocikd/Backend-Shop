@@ -1,7 +1,7 @@
 package pl.robocikd.shop.category.model;
 
 import org.springframework.data.domain.Page;
-import pl.robocikd.shop.product.model.Product;
+import pl.robocikd.shop.product.controller.dto.ProductListDto;
 
-public record CategoryProductsDto(Category category, Page<Product> products) {
+public record CategoryProductsDto(Category category, Page<ProductListDto> products) {
 }

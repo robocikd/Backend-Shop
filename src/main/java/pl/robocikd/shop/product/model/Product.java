@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import pl.robocikd.shop.review.model.Review;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +31,7 @@ public class Product {
     private String currency;
     private String image;
     private String slug;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name = "productId")
     private List<Review> reviews;
 
