@@ -9,8 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import pl.robocikd.shop.product.controller.dto.ProductListDto;
-import pl.robocikd.shop.product.model.Product;
+import pl.robocikd.shop.common.dto.ProductListDto;
+import pl.robocikd.shop.common.model.Product;
 import pl.robocikd.shop.product.service.ProductService;
 
 import javax.validation.constraints.Pattern;

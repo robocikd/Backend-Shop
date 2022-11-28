@@ -1,4 +1,4 @@
-package pl.robocikd.shop.product.controller.dto;
+package pl.robocikd.shop.common.dto;
 
 import lombok.Builder;
 import lombok.Getter;

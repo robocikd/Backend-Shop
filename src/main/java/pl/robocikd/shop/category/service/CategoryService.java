@@ -6,12 +6,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.robocikd.shop.category.model.Category;
-import pl.robocikd.shop.category.model.CategoryProductsDto;
+import pl.robocikd.shop.category.dto.CategoryProductsDto;
 import pl.robocikd.shop.category.repository.CategoryRepository;
-import pl.robocikd.shop.product.controller.dto.ProductListDto;
-import pl.robocikd.shop.product.model.Product;
-import pl.robocikd.shop.product.repositiry.ProductRepository;
+import pl.robocikd.shop.common.dto.ProductListDto;
+import pl.robocikd.shop.common.model.Category;
+import pl.robocikd.shop.common.model.Product;
+import pl.robocikd.shop.common.repository.ProductRepository;
 
 import java.util.List;
 

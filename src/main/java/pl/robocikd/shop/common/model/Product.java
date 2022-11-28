@@ -1,9 +1,8 @@
-package pl.robocikd.shop.product.model;
+package pl.robocikd.shop.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.robocikd.shop.review.model.Review;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

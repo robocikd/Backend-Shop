@@ -1,9 +1,9 @@
-package pl.robocikd.shop.product.repositiry;
+package pl.robocikd.shop.common.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.robocikd.shop.product.model.Product;
+import pl.robocikd.shop.common.model.Product;
 
 import java.util.Optional;
 

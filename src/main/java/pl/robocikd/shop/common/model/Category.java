@@ -1,4 +1,4 @@
-package pl.robocikd.shop.category.model;
+package pl.robocikd.shop.common.model;
 
 import lombok.Getter;
 

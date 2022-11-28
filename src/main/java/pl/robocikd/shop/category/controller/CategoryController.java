@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.robocikd.shop.category.model.Category;
-import pl.robocikd.shop.category.model.CategoryProductsDto;
+import pl.robocikd.shop.category.dto.CategoryProductsDto;
 import pl.robocikd.shop.category.service.CategoryService;
+import pl.robocikd.shop.common.model.Category;
 
 import javax.validation.constraints.Pattern;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pl.robocikd.shop.review.model;
+package pl.robocikd.shop.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

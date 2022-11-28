@@ -1,11 +1,11 @@
-package pl.robocikd.shop.admin.product.service;
+package pl.robocikd.shop.admin.common.utils;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UploadedFilesNameUtilsTest {
+class SlugifyUtilsTest {
 
     @ParameterizedTest
     @CsvSource({
@@ -25,7 +25,7 @@ class UploadedFilesNameUtilsTest {
 
     })
     void shouldSlugifyFileName(String in, String out) {
-        String slugifyIn = UploadedFilesNameUtils.slugifyFileName(in);
+        String slugifyIn = SlugifyUtils.slugifyFileName(in);
         assertEquals(out, slugifyIn);
     }
 }
