@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.robocikd.shop.common.dto.ProductListDto;
 import pl.robocikd.shop.common.model.Product;
 import pl.robocikd.shop.product.service.ProductService;
+import pl.robocikd.shop.product.service.dto.ProductDto;
 
 import javax.validation.constraints.Pattern;
 import java.util.List;
@@ -41,7 +42,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{slug}")
-    public Product getProductBySlug(
+    public ProductDto getProductBySlug(
             @PathVariable
             @Pattern(regexp = "[a-z0-9\\-]+")
             @Length(max = 255)
