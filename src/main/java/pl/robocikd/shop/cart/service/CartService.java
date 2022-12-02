@@ -10,6 +10,8 @@ import pl.robocikd.shop.cart.respository.CartRepository;
 import pl.robocikd.shop.common.model.Product;
 import pl.robocikd.shop.common.repository.ProductRepository;
 
+import java.util.List;
+
 import static java.time.LocalDateTime.now;
 
 @Service
@@ -45,5 +47,16 @@ public class CartService {
                     .build());
         }
         return cartRepository.findById(id).orElseThrow();
+    }
+
+    @Transactional
+    public Cart updateCart(Long id, List<CartProductMinDto> cartProductMinDtos) {
+        Cart cart = cartRepository.findById(id).orElseThrow();
+        cart.getItems().forEach(cartItem -> {
+            cartProductMinDtos.stream()
+                    .filter(cartProductMinDto -> cartItem.getProduct().getId().equals(cartProductMinDto.productId()))
+                    .findFirst().ifPresent(cartProductMinDto -> cartItem.setQuantity(cartProductMinDto.quantity()));
+        });
+        return cart;
     }
 }
