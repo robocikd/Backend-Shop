@@ -1,10 +1,10 @@
-package pl.robocikd.shop.cart.respository;
+package pl.robocikd.shop.common.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
-import pl.robocikd.shop.cart.model.CartItem;
+import pl.robocikd.shop.common.model.CartItem;
 
 import java.util.List;
 

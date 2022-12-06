@@ -3,11 +3,11 @@ package pl.robocikd.shop.cart.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.robocikd.shop.cart.model.Cart;
-import pl.robocikd.shop.cart.model.CartItem;
 import pl.robocikd.shop.cart.model.dto.CartProductMinDto;
-import pl.robocikd.shop.cart.respository.CartRepository;
+import pl.robocikd.shop.common.model.Cart;
+import pl.robocikd.shop.common.model.CartItem;
 import pl.robocikd.shop.common.model.Product;
+import pl.robocikd.shop.common.repository.CartRepository;
 import pl.robocikd.shop.common.repository.ProductRepository;
 
 import java.util.List;

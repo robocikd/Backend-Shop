@@ -1,11 +1,10 @@
-package pl.robocikd.shop.cart.model;
+package pl.robocikd.shop.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.robocikd.shop.common.model.Product;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -3,8 +3,8 @@ package pl.robocikd.shop.cart.controller.mapper;
 import pl.robocikd.shop.cart.controller.dto.CartSummaryDto;
 import pl.robocikd.shop.cart.controller.dto.CartSummaryItemDto;
 import pl.robocikd.shop.cart.controller.dto.SummaryDto;
-import pl.robocikd.shop.cart.model.Cart;
-import pl.robocikd.shop.cart.model.CartItem;
+import pl.robocikd.shop.common.model.Cart;
+import pl.robocikd.shop.common.model.CartItem;
 import pl.robocikd.shop.common.model.Product;
 import pl.robocikd.shop.product.service.dto.ProductDto;
 
