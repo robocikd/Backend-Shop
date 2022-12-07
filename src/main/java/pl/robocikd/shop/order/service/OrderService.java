@@ -3,7 +3,7 @@ package pl.robocikd.shop.order.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.robocikd.shop.common.mail.EmailSender;
+import pl.robocikd.shop.common.mail.EmailClientService;
 import pl.robocikd.shop.common.model.Cart;
 import pl.robocikd.shop.common.model.CartItem;
 import pl.robocikd.shop.common.repository.CartItemRepository;
@@ -34,7 +34,7 @@ public class OrderService {
     private final CartRepository cartRepository;
     private final ShipmentRepository shipmentRepository;
     private final PaymentRepository paymentRepository;
-    private final EmailSender emailSender;
+    private final EmailClientService emailClientService;
 
     @Transactional
     public OrderSummaryDto placeOrder(OrderDto orderDto) {
@@ -58,7 +58,7 @@ public class OrderService {
         saveOrderRows(cart, newOrder.getId(), shipment);
         cartItemRepository.deleteByCartId(orderDto.getCartId());
         cartRepository.deleteById(orderDto.getCartId());
-        emailSender.send(order.getEmail(), "Twoje zamówienie zostało przyjęte", createEmailMessage(order));
+        emailClientService.getInstance().send(order.getEmail(), "Twoje zamówienie zostało przyjęte", createEmailMessage(order));
         return OrderSummaryDto.builder()
                 .id(newOrder.getId())
                 .placeDate(newOrder.getPlaceDate())
