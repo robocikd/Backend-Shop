@@ -6,7 +6,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
 @Getter
 public class OrderDto {
     @NotBlank
@@ -26,4 +25,6 @@ public class OrderDto {
     private String phone;
     @NotNull
     private Long cartId;
+    @NotNull
+    private Long shipmentId;
 }
