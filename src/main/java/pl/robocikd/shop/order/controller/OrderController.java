@@ -10,6 +10,7 @@ import pl.robocikd.shop.order.model.dto.InitOrderDto;
 import pl.robocikd.shop.order.model.dto.OrderDto;
 import pl.robocikd.shop.order.model.dto.OrderSummaryDto;
 import pl.robocikd.shop.order.service.OrderService;
+import pl.robocikd.shop.order.service.PaymentService;
 import pl.robocikd.shop.order.service.ShipmentService;
 
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ public class OrderController {
 
     private final OrderService orderService;
     private final ShipmentService shipmentService;
+    private final PaymentService paymentService;
 
     @PostMapping
     public OrderSummaryDto placeOrder(@RequestBody @Valid OrderDto orderDto) {
@@ -31,6 +33,7 @@ public class OrderController {
     public InitOrderDto initData() {
         return InitOrderDto.builder()
                 .shipments(shipmentService.getShipments())
+                .payments(paymentService.getPayments())
                 .build();
     }
 }
