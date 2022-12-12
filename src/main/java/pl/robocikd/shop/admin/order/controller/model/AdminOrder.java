@@ -1,6 +1,7 @@
 package pl.robocikd.shop.admin.order.controller.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,6 +20,7 @@ import java.util.List;
 @Entity
 @Table(name = "`order`")
 @Getter
+@Setter
 public class AdminOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
