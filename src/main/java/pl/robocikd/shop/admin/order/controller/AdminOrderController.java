@@ -37,8 +37,8 @@ public class AdminOrderController {
     }
 
     @PatchMapping("/{id}")
-    public void saveOrderStatus(@PathVariable Long id, @RequestBody Map<String, String> values) {
-        adminOrderService.patchOrderStatus(id, values);
+    public void saveOrder(@PathVariable Long id, @RequestBody Map<String, String> values) {
+        adminOrderService.patchOrder(id, values);
     }
 
     @GetMapping("/initData")
