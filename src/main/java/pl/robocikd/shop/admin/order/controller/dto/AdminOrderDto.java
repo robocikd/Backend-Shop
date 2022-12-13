@@ -2,7 +2,7 @@ package pl.robocikd.shop.admin.order.controller.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrderStatus;
+import pl.robocikd.shop.admin.order.model.AdminOrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

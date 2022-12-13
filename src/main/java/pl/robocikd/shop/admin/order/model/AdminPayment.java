@@ -1,4 +1,4 @@
-package pl.robocikd.shop.admin.order.controller.model;
+package pl.robocikd.shop.admin.order.model;
 
 import lombok.Getter;
 import pl.robocikd.shop.order.model.PaymentType;

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.robocikd.shop.admin.order.controller.dto.AdminInitDataDto;
 import pl.robocikd.shop.admin.order.controller.dto.AdminOrderDto;
 import pl.robocikd.shop.admin.order.controller.mapper.AdminOrderMapper;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrder;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrderStatus;
+import pl.robocikd.shop.admin.order.model.AdminOrder;
+import pl.robocikd.shop.admin.order.model.AdminOrderStatus;
 import pl.robocikd.shop.admin.order.service.AdminOrderService;
 
 import java.util.HashMap;

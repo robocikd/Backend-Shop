@@ -2,8 +2,8 @@ package pl.robocikd.shop.admin.order.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrder;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrderStatus;
+import pl.robocikd.shop.admin.order.model.AdminOrder;
+import pl.robocikd.shop.admin.order.model.AdminOrderStatus;
 import pl.robocikd.shop.common.mail.EmailClientService;
 
 import static pl.robocikd.shop.admin.order.service.AdminOrderEmailMessage.createCompletedEmailMessage;

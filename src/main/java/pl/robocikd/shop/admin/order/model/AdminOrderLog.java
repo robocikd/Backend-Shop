@@ -1,4 +1,4 @@
-package pl.robocikd.shop.admin.order.controller.model;
+package pl.robocikd.shop.admin.order.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

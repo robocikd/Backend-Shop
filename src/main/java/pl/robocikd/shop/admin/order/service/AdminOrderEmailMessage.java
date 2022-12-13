@@ -1,6 +1,6 @@
 package pl.robocikd.shop.admin.order.service;
 
-import pl.robocikd.shop.admin.order.controller.model.AdminOrderStatus;
+import pl.robocikd.shop.admin.order.model.AdminOrderStatus;
 
 public class AdminOrderEmailMessage {
 

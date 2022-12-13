@@ -3,7 +3,7 @@ package pl.robocikd.shop.admin.order.controller.mapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import pl.robocikd.shop.admin.order.controller.dto.AdminOrderDto;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrder;
+import pl.robocikd.shop.admin.order.model.AdminOrder;
 
 import java.util.List;
 

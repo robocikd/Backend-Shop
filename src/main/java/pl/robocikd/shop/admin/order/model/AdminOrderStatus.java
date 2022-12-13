@@ -1,4 +1,4 @@
-package pl.robocikd.shop.admin.order.controller.model;
+package pl.robocikd.shop.admin.order.model;
 
 public enum AdminOrderStatus {
     NEW("Nowe"),

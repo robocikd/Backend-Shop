@@ -7,9 +7,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrder;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrderLog;
-import pl.robocikd.shop.admin.order.controller.model.AdminOrderStatus;
+import pl.robocikd.shop.admin.order.model.AdminOrder;
+import pl.robocikd.shop.admin.order.model.AdminOrderLog;
+import pl.robocikd.shop.admin.order.model.AdminOrderStatus;
 import pl.robocikd.shop.admin.order.repositor.AdminOrderLogRepository;
 import pl.robocikd.shop.admin.order.repositor.AdminOrderRepository;
 
