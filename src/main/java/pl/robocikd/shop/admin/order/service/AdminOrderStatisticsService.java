@@ -29,10 +29,16 @@ public class AdminOrderStatisticsService {
         for (int i = from.getDayOfMonth(); i <= to.getDayOfMonth(); i++) {
             result.put(i, aggregateValues(i, adminOrders));
         }
+
+        List<BigDecimal> salesList = result.values().stream().map(o -> o.sales).toList();
+        List<Long> orderList = result.values().stream().map(o -> o.orders).toList();
+
         return AdminOrderStatisticsDto.builder()
                 .labels(result.keySet().stream().toList())
-                .sales(result.values().stream().map(o -> o.sales).toList())
-                .orders(result.values().stream().map(o -> o.orders).toList())
+                .sales(salesList)
+                .orders(orderList)
+                .ordersNo(orderList.stream().reduce(Long::sum).orElse(0L))
+                .salesSum(salesList.stream().reduce(BigDecimal::add).orElse(BigDecimal.ZERO))
                 .build();
     }
 
