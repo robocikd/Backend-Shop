@@ -9,11 +9,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import pl.robocikd.shop.security.model.ShopUserDetails;
 import pl.robocikd.shop.security.model.User;
 import pl.robocikd.shop.security.model.UserRole;
 import pl.robocikd.shop.security.repository.UserRepository;
@@ -64,12 +64,14 @@ public class LoginController {
     }
 
     private Token authenticate(String username, String password) {
+        User user = userRepository.findByUsername(username).orElseThrow();
+
         Authentication authenticate = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(username, password)
+                new UsernamePasswordAuthenticationToken(user.getId(), password)
         );
-        UserDetails principal = (UserDetails) authenticate.getPrincipal();
+        ShopUserDetails principal = (ShopUserDetails) authenticate.getPrincipal();
         String token = JWT.create()
-                .withSubject(principal.getUsername())
+                .withSubject(String.valueOf(principal.getId()))
                 .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime))
                 .sign(Algorithm.HMAC256(secret));
         Boolean adminAccess = principal.getAuthorities().stream()
