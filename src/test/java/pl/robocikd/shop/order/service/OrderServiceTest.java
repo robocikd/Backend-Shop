@@ -61,8 +61,9 @@ class OrderServiceTest {
         when(paymentRepository.findById(any())).thenReturn(createPayment());
         when(orderRepository.save(any())).thenAnswer(invocation -> invocation.getArguments()[0]);
         when(emailClientService.getInstance()).thenReturn(new FakeEmailService());
+        Long userId = 1L;
         // when
-        OrderSummaryDto orderSummaryDto = orderService.placeOrder(orderDto);
+        OrderSummaryDto orderSummaryDto = orderService.placeOrder(orderDto, userId);
         // then
         assertThat(orderSummaryDto).isNotNull();
         assertThat(orderSummaryDto.getStatus()).isEqualTo(OrderStatus.NEW);
