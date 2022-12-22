@@ -13,8 +13,8 @@ import pl.robocikd.shop.admin.order.controller.dto.AdminInitDataDto;
 import pl.robocikd.shop.admin.order.controller.dto.AdminOrderDto;
 import pl.robocikd.shop.admin.order.controller.mapper.AdminOrderMapper;
 import pl.robocikd.shop.admin.order.model.AdminOrder;
-import pl.robocikd.shop.admin.order.model.AdminOrderStatus;
 import pl.robocikd.shop.admin.order.service.AdminOrderService;
+import pl.robocikd.shop.common.model.OrderStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +48,7 @@ public class AdminOrderController {
 
     private Map<String, String> createOrderStatusesMap() {
         Map<String, String> statuses = new HashMap<>();
-        for (AdminOrderStatus value : AdminOrderStatus.values()) {
+        for (OrderStatus value : OrderStatus.values()) {
             statuses.put(value.name(), value.getValue());
         }
         return statuses;

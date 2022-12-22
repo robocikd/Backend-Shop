@@ -11,13 +11,18 @@ import pl.robocikd.shop.order.model.Order;
 import pl.robocikd.shop.order.model.Payment;
 import pl.robocikd.shop.order.model.Shipment;
 import pl.robocikd.shop.order.model.dto.OrderDto;
+import pl.robocikd.shop.order.model.dto.OrderListDto;
 import pl.robocikd.shop.order.model.dto.OrderSummaryDto;
 import pl.robocikd.shop.order.repository.OrderRepository;
 import pl.robocikd.shop.order.repository.OrderRowRepository;
 import pl.robocikd.shop.order.repository.PaymentRepository;
 import pl.robocikd.shop.order.repository.ShipmentRepository;
+import pl.robocikd.shop.security.repository.UserRepository;
+
+import java.util.List;
 
 import static pl.robocikd.shop.order.service.mapper.OrderEmailMessageMapper.createEmailMessage;
+import static pl.robocikd.shop.order.service.mapper.OrderListDtoMapper.mapToOrderListDto;
 import static pl.robocikd.shop.order.service.mapper.OrderMapper.createOrder;
 import static pl.robocikd.shop.order.service.mapper.OrderMapper.createOrderSummary;
 import static pl.robocikd.shop.order.service.mapper.OrderMapper.mapToOrderRow;
@@ -33,6 +38,7 @@ public class OrderService {
     private final ShipmentRepository shipmentRepository;
     private final PaymentRepository paymentRepository;
     private final EmailClientService emailClientService;
+    private final UserRepository userRepository;
 
     @Transactional
     public OrderSummaryDto placeOrder(OrderDto orderDto, Long userId) {
@@ -72,5 +78,7 @@ public class OrderService {
         orderRowRepository.save(mapToOrderRow(orderId, shipment));
     }
 
-
+    public List<OrderListDto> getOrdersForCustomer(Long userId) {
+        return mapToOrderListDto(orderRepository.findByUserId(userId));
+    }
 }

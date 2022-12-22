@@ -3,9 +3,9 @@ package pl.robocikd.shop.admin.order.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.robocikd.shop.admin.order.model.AdminOrder;
-import pl.robocikd.shop.admin.order.model.AdminOrderStatus;
 import pl.robocikd.shop.admin.order.model.dto.AdminOrderStatisticsDto;
 import pl.robocikd.shop.admin.order.repositor.AdminOrderRepository;
+import pl.robocikd.shop.common.model.OrderStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,7 +23,7 @@ public class AdminOrderStatisticsService {
         List<AdminOrder> adminOrders = adminOrderRepository.findAllByPlaceDateIsBetweenAndOrderStatus(
                 from,
                 to,
-                AdminOrderStatus.COMPLETED
+                OrderStatus.COMPLETED
         );
         TreeMap<Integer, AdminOrderStatsValue> result = new TreeMap<>();
         for (int i = from.getDayOfMonth(); i <= to.getDayOfMonth(); i++) {

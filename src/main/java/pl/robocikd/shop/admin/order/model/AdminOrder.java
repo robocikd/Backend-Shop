@@ -2,6 +2,7 @@ package pl.robocikd.shop.admin.order.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import pl.robocikd.shop.common.model.OrderStatus;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,7 +28,7 @@ public class AdminOrder {
     private Long id;
     private LocalDateTime placeDate;
     @Enumerated(EnumType.STRING)
-    private AdminOrderStatus orderStatus;
+    private OrderStatus orderStatus;
     @OneToMany
     @JoinColumn(name = "orderId")
     private List<AdminOrderRow> orderRows;

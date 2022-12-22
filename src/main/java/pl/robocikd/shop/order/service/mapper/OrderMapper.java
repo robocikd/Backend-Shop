@@ -2,9 +2,9 @@ package pl.robocikd.shop.order.service.mapper;
 
 import pl.robocikd.shop.common.model.Cart;
 import pl.robocikd.shop.common.model.CartItem;
+import pl.robocikd.shop.common.model.OrderStatus;
 import pl.robocikd.shop.order.model.Order;
 import pl.robocikd.shop.order.model.OrderRow;
-import pl.robocikd.shop.order.model.OrderStatus;
 import pl.robocikd.shop.order.model.Payment;
 import pl.robocikd.shop.order.model.Shipment;
 import pl.robocikd.shop.order.model.dto.OrderDto;

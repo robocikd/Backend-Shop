@@ -3,8 +3,8 @@ package pl.robocikd.shop.admin.order.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.robocikd.shop.admin.order.model.AdminOrder;
-import pl.robocikd.shop.admin.order.model.AdminOrderStatus;
 import pl.robocikd.shop.common.mail.EmailClientService;
+import pl.robocikd.shop.common.model.OrderStatus;
 
 import static pl.robocikd.shop.admin.order.service.AdminOrderEmailMessage.createCompletedEmailMessage;
 import static pl.robocikd.shop.admin.order.service.AdminOrderEmailMessage.createProcessingEmailMessage;
@@ -16,20 +16,20 @@ class EmailNotificationForStatusChange {
 
     private final EmailClientService emailClientService;
 
-    public void sendEmailNotification(AdminOrderStatus newStatus, AdminOrder adminOrder) {
-        if (newStatus == AdminOrderStatus.PROCESSING) {
+    public void sendEmailNotification(OrderStatus newStatus, AdminOrder adminOrder) {
+        if (newStatus == OrderStatus.PROCESSING) {
             sendEmail(
                     adminOrder.getEmail(),
                     "Zamównienie " + adminOrder.getId() + " zmeniło status na: " + newStatus.getValue(),
                     createProcessingEmailMessage(adminOrder.getId(), newStatus)
             );
-        } else if (newStatus == AdminOrderStatus.COMPLETED) {
+        } else if (newStatus == OrderStatus.COMPLETED) {
             sendEmail(
                     adminOrder.getEmail(),
                     "Zamównienie " + adminOrder.getId() + " zostało zrealizowane",
                     createCompletedEmailMessage(adminOrder.getId(), newStatus)
             );
-        } else if (newStatus == AdminOrderStatus.REFUND) {
+        } else if (newStatus == OrderStatus.REFUND) {
             sendEmail(
                     adminOrder.getEmail(),
                     "Zamównienie " + adminOrder.getId() + " zostało zwrócone",
