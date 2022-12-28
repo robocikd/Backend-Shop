@@ -24,7 +24,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping(value = "/products", produces = {"application/json"})
+    @GetMapping(value = "/products")
     public Page<ProductListDto> getProducts(Pageable pageable) {
         Page<Product> products = productService.getProducts(pageable);
         List<ProductListDto> productListDtos = products.getContent().stream()

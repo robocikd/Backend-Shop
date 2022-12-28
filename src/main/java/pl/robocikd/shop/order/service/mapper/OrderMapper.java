@@ -41,13 +41,14 @@ public class OrderMapper {
                 .add(shipment.getPrice());
     }
 
-    public static OrderSummaryDto createOrderSummary(Payment payment, Order newOrder) {
+    public static OrderSummaryDto createOrderSummary(Payment payment, Order newOrder, String redirectUrl) {
         return OrderSummaryDto.builder()
                 .id(newOrder.getId())
                 .placeDate(newOrder.getPlaceDate())
                 .status(newOrder.getOrderStatus())
                 .grossValue(newOrder.getGrossValue())
                 .payment(payment)
+                .redirectUrl(redirectUrl)
                 .build();
     }
 

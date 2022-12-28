@@ -18,4 +18,5 @@ public class OrderSummaryDto {
     private OrderStatus status;
     private BigDecimal grossValue;
     private Payment payment;
+    private String redirectUrl;
 }
