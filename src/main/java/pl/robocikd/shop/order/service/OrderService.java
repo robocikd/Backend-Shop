@@ -106,9 +106,9 @@ public class OrderService {
     }
 
     @Transactional
-    public void receiveNotification(String orderHash, NotificationReceiveDto receiveDto) {
+    public void receiveNotification(String orderHash, NotificationReceiveDto receiveDto, String remoteAddress) {
         Order order = getOrderByOrderHash(orderHash);
-        String status = paymentMethodP24.receiveNotification(order, receiveDto);
+        String status = paymentMethodP24.receiveNotification(order, receiveDto, remoteAddress);
         if (status.equals("success")) {
             OrderStatus oldStatus = order.getOrderStatus();
             order.setOrderStatus(OrderStatus.PAID);

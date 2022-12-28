@@ -81,10 +81,17 @@ public class PaymentMethodP24 {
         return "order_id_" + newOrder.getId().toString();
     }
 
-    public String receiveNotification(Order order, NotificationReceiveDto receiveDto) {
+    public String receiveNotification(Order order, NotificationReceiveDto receiveDto, String remoteAddress) {
         log.info(receiveDto.toString());
+        validateIpAddress(remoteAddress);
         validate(receiveDto, order);
         return verifyPayment(receiveDto, order);
+    }
+
+    private void validateIpAddress(String remoteAddress) {
+        if (!config.getServers().contains(remoteAddress)) {
+            throw new RuntimeException("Niepoprawny adres IP dla potwierdzenia płatności");
+        }
     }
 
     private String verifyPayment(NotificationReceiveDto receiveDto, Order order) {

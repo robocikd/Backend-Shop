@@ -22,6 +22,7 @@ import pl.robocikd.shop.order.service.OrderService;
 import pl.robocikd.shop.order.service.PaymentService;
 import pl.robocikd.shop.order.service.ShipmentService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -64,7 +65,8 @@ public class OrderController {
 
     @PostMapping("/notification/{orderHash}")
     public void receiveNotification(@PathVariable @Length(max = 12) String orderHash,
-                                    @RequestBody NotificationReceiveDto receiveDto) {
-        orderService.receiveNotification(orderHash, receiveDto);
+                                    @RequestBody NotificationReceiveDto receiveDto,
+                                    HttpServletRequest servletRequest) {
+        orderService.receiveNotification(orderHash, receiveDto, servletRequest.getRemoteAddr());
     }
 }

@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.List;
+
 @Configuration
 @Getter
 @Setter
@@ -28,4 +30,6 @@ public class PaymentMethodP24Config {
     private String testUrlStatus;
     private String testCrc;
     private String testSecretKey;
+
+    private List<String> servers;
 }
