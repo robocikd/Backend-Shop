@@ -1,5 +1,6 @@
 package pl.robocikd.shop.order.service.mapper;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import pl.robocikd.shop.common.model.Cart;
 import pl.robocikd.shop.common.model.CartItem;
 import pl.robocikd.shop.common.model.OrderStatus;
@@ -30,6 +31,7 @@ public class OrderMapper {
                 .grossValue(calculateGrossValue(cart.getItems(), shipment))
                 .payment(payment)
                 .userId(userId)
+                .orderHash(RandomStringUtils.randomAlphabetic(12))
                 .build();
     }
 

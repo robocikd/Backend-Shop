@@ -49,4 +49,5 @@ public class Order {
     @OneToOne
     private Payment payment;
     private Long userId;
+    private String orderHash;
 }

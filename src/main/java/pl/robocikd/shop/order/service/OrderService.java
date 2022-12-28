@@ -1,19 +1,24 @@
 package pl.robocikd.shop.order.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.robocikd.shop.common.mail.EmailClientService;
 import pl.robocikd.shop.common.model.Cart;
+import pl.robocikd.shop.common.model.OrderStatus;
 import pl.robocikd.shop.common.repository.CartItemRepository;
 import pl.robocikd.shop.common.repository.CartRepository;
 import pl.robocikd.shop.order.model.Order;
+import pl.robocikd.shop.order.model.OrderLog;
 import pl.robocikd.shop.order.model.Payment;
 import pl.robocikd.shop.order.model.PaymentType;
 import pl.robocikd.shop.order.model.Shipment;
+import pl.robocikd.shop.order.model.dto.NotificationReceiveDto;
 import pl.robocikd.shop.order.model.dto.OrderDto;
 import pl.robocikd.shop.order.model.dto.OrderListDto;
 import pl.robocikd.shop.order.model.dto.OrderSummaryDto;
+import pl.robocikd.shop.order.repository.OrderLogRepository;
 import pl.robocikd.shop.order.repository.OrderRepository;
 import pl.robocikd.shop.order.repository.OrderRowRepository;
 import pl.robocikd.shop.order.repository.PaymentRepository;
@@ -21,6 +26,7 @@ import pl.robocikd.shop.order.repository.ShipmentRepository;
 import pl.robocikd.shop.order.service.payment.p24.PaymentMethodP24;
 import pl.robocikd.shop.security.repository.UserRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static pl.robocikd.shop.order.service.mapper.OrderEmailMessageMapper.createEmailMessage;
@@ -32,6 +38,7 @@ import static pl.robocikd.shop.order.service.mapper.OrderMapper.mapToOrderRowWit
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderRowRepository orderRowRepository;
@@ -42,6 +49,7 @@ public class OrderService {
     private final EmailClientService emailClientService;
     private final UserRepository userRepository;
     private final PaymentMethodP24 paymentMethodP24;
+    private final OrderLogRepository orderLogRepository;
 
     @Transactional
     public OrderSummaryDto placeOrder(OrderDto orderDto, Long userId) {
@@ -58,7 +66,7 @@ public class OrderService {
 
     private String initPaymentIfNeeded(Order newOrder) {
         if (newOrder.getPayment().getType() == PaymentType.P24_ONLINE) {
-           return paymentMethodP24.initPayment(newOrder);
+            return paymentMethodP24.initPayment(newOrder);
         }
         return null;
     }
@@ -91,5 +99,26 @@ public class OrderService {
 
     public List<OrderListDto> getOrdersForCustomer(Long userId) {
         return mapToOrderListDto(orderRepository.findByUserId(userId));
+    }
+
+    public Order getOrderByOrderHash(String orderHash) {
+        return orderRepository.findByOrderHash(orderHash).orElseThrow();
+    }
+
+    @Transactional
+    public void receiveNotification(String orderHash, NotificationReceiveDto receiveDto) {
+        Order order = getOrderByOrderHash(orderHash);
+        String status = paymentMethodP24.receiveNotification(order, receiveDto);
+        if (status.equals("success")) {
+            OrderStatus oldStatus = order.getOrderStatus();
+            order.setOrderStatus(OrderStatus.PAID);
+            orderLogRepository.save(OrderLog.builder()
+                    .created(LocalDateTime.now())
+                    .orderId(order.getId())
+                    .note("Opłacono zamównienie przez Przelewy24, id płatności: "
+                            + receiveDto.getStatement()
+                            + " , zmieniono status z " + oldStatus.getValue() + " na " + order.getOrderStatus().getValue())
+                    .build());
+        }
     }
 }
