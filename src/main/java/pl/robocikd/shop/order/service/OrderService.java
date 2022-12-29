@@ -81,7 +81,8 @@ public class OrderService {
         cartRepository.deleteById(orderDto.getCartId());
     }
 
-    private void saveOrderRows(Cart cart, Long orderId, Shipment shipment) {
+    private void
+    saveOrderRows(Cart cart, Long orderId, Shipment shipment) {
         saveProductRows(cart, orderId);
         saveShipmentRow(orderId, shipment);
     }

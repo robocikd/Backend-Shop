@@ -38,7 +38,7 @@ public class CartMapper {
         return ProductDto.builder()
                 .id(product.getId())
                 .name(product.getName())
-                .price(product.getPrice())
+                .price(product.getEndPrice())
                 .currency(product.getCurrency())
                 .image(product.getImage())
                 .slug(product.getSlug())
@@ -46,7 +46,7 @@ public class CartMapper {
     }
 
     private static BigDecimal calculateLineValue(CartItem cartItem) {
-        return cartItem.getProduct().getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity()));
+        return cartItem.getProduct().getEndPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity()));
     }
 
     private static SummaryDto mapToCartSummaryDto(List<CartItem> items) {

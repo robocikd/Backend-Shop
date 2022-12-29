@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.robocikd.shop.cart.controller.dto.CartSummaryDto;
-import pl.robocikd.shop.cart.controller.mapper.CartMapper;
 import pl.robocikd.shop.cart.model.dto.CartProductMinDto;
 import pl.robocikd.shop.cart.service.CartService;
 
@@ -35,6 +34,6 @@ public class CartController {
 
     @PutMapping("/{id}/update")
     public CartSummaryDto updateCart(@PathVariable Long id, @RequestBody List<CartProductMinDto> cartProductMinDtoList) {
-        return CartMapper.mapToCartSummaryDto(cartService.updateCart(id, cartProductMinDtoList));
+        return mapToCartSummaryDto(cartService.updateCart(id, cartProductMinDtoList));
     }
 }
