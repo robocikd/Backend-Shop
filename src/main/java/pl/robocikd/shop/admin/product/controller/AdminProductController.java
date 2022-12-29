@@ -1,6 +1,7 @@
 package pl.robocikd.shop.admin.product.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -52,6 +53,7 @@ public class AdminProductController {
     }
 
     @PutMapping("/admin/product/{id}")
+    @CacheEvict(cacheNames = "productBySlug", key = "#adminProductDto.slug")
     public AdminProduct updateProduct(@RequestBody @Valid AdminProductDto adminProductDto, @PathVariable Long id) {
         return adminProductService.updateProduct(mapAdminProduct(adminProductDto, id)
         );
@@ -78,6 +80,11 @@ public class AdminProductController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_TYPE, Files.probeContentType(Path.of(fileName)))
                 .body(file);
+    }
+
+    @GetMapping("/admin/products/clearCache")
+    @CacheEvict(value = "productBySlug")
+    public void clearProductsCache() {
     }
 
     private AdminProduct mapAdminProduct(AdminProductDto adminProductDto, Long id) {
